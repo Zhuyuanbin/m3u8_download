@@ -95,7 +95,7 @@ html_doc = """
 
 
 def ParaseSearchHtml(html_res):
-    soup = BeautifulSoup(html_doc, 'html.parser')
+    soup = BeautifulSoup(html_res, 'html.parser')
 
     movies = []
     for li in soup.find_all('li', class_='item mb15 card-wrap'):

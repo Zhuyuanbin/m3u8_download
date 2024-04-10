@@ -1,5 +1,19 @@
+#!/usr/bin/env python3 
+# -*- coding:utf-8 _*-  
+
+
+
+"""
+根据url 下载m3u8 并解析里面的ts
+
+脚本执行 
+-l m3u8的url地址，可选参数，如果没有则输入
+"""
+
 import requests
 from urllib.parse import urljoin
+from logger import logPrint
+import argparse
 
 def download_m3u8(url):
     # 发送请求获取M3U8文件内容
@@ -8,7 +22,7 @@ def download_m3u8(url):
         m3u8_content = response.text
         return m3u8_content
     else:
-        print("Failed to download M3U8 file")
+        logPrint("Failed to download M3U8 file")
         return None
 
 def parse_ts_urls(m3u8_content, base_url):
@@ -16,8 +30,9 @@ def parse_ts_urls(m3u8_content, base_url):
     ts_urls = [urljoin(base_url, line.strip()) for line in m3u8_content.split('\n') if line.strip().endswith('.ts')]
     return ts_urls
 
-def main():
-    m3u8_url = input("请输入M3U8文件的URL：")
+
+
+def download_parse(m3u8_url):
     base_url = '/'.join(m3u8_url.split('/')[:-1]) + '/'  # 获取M3U8文件的基本URL
     
     # 下载M3U8文件内容
@@ -30,6 +45,19 @@ def main():
         print("解析到的TS文件URL：")
         for url in ts_urls:
             print(url)
+        return ts_urls
+
+def main():
+    m3u8_url = input("请输入M3U8文件的URL：")
+    download_parse(m3u8_url)
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="test m3u8 url download and parase ts url")
+    parser.add_argument("-l", "--link", help="m3u8 url link", required=False)
+    args = parser.parse_args()
+
+    if args.link:
+        download_parse(args.link)
+    else:
+        main()
+

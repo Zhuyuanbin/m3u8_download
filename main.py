@@ -221,9 +221,9 @@ if __name__ == "__main__":
     link = args.link
     if link:
         if link.endswith('.m3u8'):
-            AutoDownloadMovieFromM3u8Link(link)
+            AutoDownloadMovieFromM3u8Link(link,movie_name)
         else:
-            AutoDownloadMovieFromMovieLink(link)
+            AutoDownloadMovieFromMovieLink(link,movie_name)
     else:
         AutoDownloadMovieFromName(movie_name)
 

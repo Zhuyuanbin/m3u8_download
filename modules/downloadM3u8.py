@@ -12,7 +12,7 @@
 
 import requests
 from urllib.parse import urljoin
-from logger import logPrint
+from .logger import logPrint
 import argparse
 
 def download_m3u8(url):

@@ -11,11 +11,15 @@
 -t nameList/files  默认是按文件合并
 """
 
-import os
+import os,sys
 import argparse
 import subprocess
-from logger import logPrint
 
+import os,sys
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
+
+from modules.logger import logPrint
 
 def merge_ts_namelist_to_mp4(ts_folder, output_file):
     # 获取文件夹内所有TS文件
@@ -32,6 +36,9 @@ def merge_ts_namelist_to_mp4(ts_folder, output_file):
             f.write("file '{}'\n".format(file_name))
     logPrint(f"生成{ts_files_fullname}文件列表成功")
 
+
+
+    output_file = output_file if output_file.endswith('.mp4') else output_file+".mp4"
 
 
     # 构造ffmpeg命令
@@ -63,6 +70,8 @@ def merge_ts_to_mp4(ts_folder, output_file):
         print("No TS files found in the folder.")
         return
     
+    output_file = output_file if output_file.endswith('.mp4') else output_file+".mp4"
+
     # 生成ffmpeg命令
     ffmpeg_command = [
         'ffmpeg',

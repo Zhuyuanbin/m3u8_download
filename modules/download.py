@@ -4,9 +4,8 @@ import threading
 import queue
 import requests
 import argparse
-import os
-import sys
 import time
+import os,sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
 
@@ -31,6 +30,8 @@ class Downloader:
         # 创建输出目录
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
+
+
 
     def add_url(self, url):
         self.download_queue.put(url)
@@ -59,7 +60,10 @@ class Downloader:
     def download_manager(self):
         while True:
             url = self.download_queue.get()
-            self.download_file(url)
+            try:
+                self.download_file(url)
+            except:
+                print(f"Failed to download {url}  except")
             self.download_queue.task_done()
 
     def start_downloader(self, num_workers=4):
@@ -93,7 +97,7 @@ class Downloader:
 
 
 
-def ThreadDownload(ts_urls,ts_dir,failed_list_filename,num_workers):
+def ThreadDownload(ts_urls,ts_dir,failed_list_filename='faild.txt',num_workers=16):
     logPrint("初始化多线程下载...")
     # 2. 多线程下载ts文件，下载出错的ts文件 写入failed.txt文件列表
     downloader = Downloader(output_dir=ts_dir, urls_file=failed_list_filename)

@@ -24,7 +24,7 @@ if __name__ == "__main__":
         movie_name = input("请输入下载的电影名称：")
 
     print(movie_name)
-    response_res = SearchMove(base_url,movie_name)
+    response_res,session = SearchMove(base_url,movie_name)
     movies = ParaseSearchHtml(response_res)
 
 
@@ -57,6 +57,7 @@ if __name__ == "__main__":
 
 
         print(f"获取{movie_name}电影 url成功：{movie_url}")
+        print(f"{session.headers}")
 
     else:
         print(f"没有找到相关电影")

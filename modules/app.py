@@ -1,17 +1,19 @@
 #!/usr/bin/env python3 
 # -*- coding:utf-8 _*-  
 import os,sys
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 from modules.searchMovie import MovieParse
 from modules.download import Downloader,ThreadDownload
-from modules.logger import logPrint
+from modules.logger import logPrint,cclog
 from modules.mergMp4 import merge_ts_namelist_to_mp4,merge_ts_to_mp4
 from modules.downloadM3u8 import download_m3u8,parse_ts_urls
 import time
 import argparse
 import shutil
-
 from conf import config
+
+
 
 class MovieDownloader:
     def __init__(self, movie_name):

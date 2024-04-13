@@ -6,7 +6,7 @@
 
 
 import logging
-# import telegram
+import telegram
 # 将当前目录添加到Python搜索路径中
 import os,sys
 # 工作目录
@@ -37,6 +37,8 @@ if not os.path.isdir(DOWNLOAD_MOVIE_BASE_DIR): os.makedirs(DOWNLOAD_MOVIE_BASE_D
 
 
 
-bot_token = "998665615:AAHv5PcGOkFujOQBVKOHnFvBvnOoDvvG-0A"
+bot_token = "7056513403:AAFVeRCJ-MnxZvtyXa4n3e7VVtOGW95ZsEw"
 
-# g_bot = telegram.Bot(bot_token)
+g_bot = telegram.Bot(bot_token)
+
+admin_user = '972310733'

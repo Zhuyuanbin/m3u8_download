@@ -66,7 +66,7 @@ def MoveAndDel(movie_name):
     """
     if os.path.exists(config.MOVIE_TARGET_DIR):
         ts_dir = os.path.join(config.DOWNLOAD_MOVIE_BASE_DIR,movie_name)
-        move_and_clean(ts_dir, config.MOVIE_TARGET_DI)
+        move_and_clean(ts_dir, config.MOVIE_TARGET_DIR)
 
 
 def move_and_clean(source_dir, target_dir):

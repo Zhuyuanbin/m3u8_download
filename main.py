@@ -28,13 +28,34 @@ class MovieDownloader:
     def ParaseM3u8Url(self,movie_link):
         movie_source_link = self.movie_parser.GetNewHostApi(movie_link)
         
-        m3u8sign_link = self.movie_parser.GetM3u8SignFromMovieSource(movie_source_link)
+        m3u8sign_link = extract_url_from_m3u8(movie_source_link)
+
+        if not m3u8sign_link:
+            m3u8sign_link = self.movie_parser.GetM3u8SignFromMovieSource(movie_source_link)
         m3u8_url = self.movie_parser.GetRealM3u8UrlFromM3u8Sign(m3u8sign_link)
         return m3u8_url
     
 
 
-
+def extract_url_from_m3u8(input_string):
+    # 判断输入字符串是否以.m3u8结尾
+    if input_string.endswith('.m3u8'):
+        # 从字符串后往前查找第一个换行符
+        index = input_string.rfind("https://")
+        # 如果找到了换行符，则从换行符位置开始提取URL
+        if index != -1:
+            url = input_string[index:]
+            return url.strip()  # 返回去除空白字符的URL
+        else:
+            index = input_string.rfind("http://")
+            # 如果找到了换行符，则从换行符位置开始提取URL
+            if index != -1:
+                url = input_string[index:]
+                return url.strip()  # 返回去除空白字符的URL
+            else:
+                return None  # 如果没有找到换行符，返回None
+    else:
+        return None  # 如果输入字符串不以.m3u8结尾，返回None
 
 
 
@@ -96,7 +117,7 @@ def GetM3u8FromMovieName(movie_name):
         return None
     
 
-    return GetM3u8FromMovieLink(movie_info['link'])
+    return GetM3u8FromMovieLink(movie_name,movie_info['link'],movieDownloader)
 
 
 
@@ -108,7 +129,7 @@ def AutoDownloadMovieFromName(movie_name):
     if m3u8_link:
         download_ret = DownloadMovieFromM3u8(m3u8_link,movie_name)
         if download_ret:
-            MoveAndDel()
+            MoveAndDel(movie_name)
         else:
             logPrint("电影下载失败")
     else:
@@ -120,7 +141,7 @@ def AutoDownloadMovieFromMovieLink(movie_link,movie_name):
     if m3u8_link:
         download_ret = DownloadMovieFromM3u8(m3u8_link,movie_name)
         if download_ret:
-            MoveAndDel()
+            MoveAndDel(movie_name)
         else:
             logPrint("电影下载失败")
     else:
@@ -130,7 +151,7 @@ def AutoDownloadMovieFromMovieLink(movie_link,movie_name):
 def AutoDownloadMovieFromM3u8Link(m3u8_link,movie_name):
     download_ret = DownloadMovieFromM3u8(m3u8_link,movie_name)
     if download_ret:
-        MoveAndDel()
+        MoveAndDel(movie_name)
     else:
         logPrint("电影下载失败")    
 

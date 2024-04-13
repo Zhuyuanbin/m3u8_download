@@ -25,3 +25,42 @@
 [2024-04-12 17:38:42,387] [INFO] logger.py:<module>:66 - tttt
 [2024-04-12 17:44:38,127] [INFO] mergMp4.py:merge_ts_namelist_to_mp4:29 - 开始生成ffmpeg读取文件列表
 [2024-04-12 17:44:38,127] [INFO] mergMp4.py:merge_ts_namelist_to_mp4:34 - 生成../download/怦然心动\nameList.txt文件列表成功
+[2024-04-13 14:48:15,729] [INFO] searchMovie.py:SessionInit:44 - 电影解析器初始化成功...
+[2024-04-13 14:48:15,731] [INFO] main.py:GetM3u8FromMovieLink:71 - 开始解析<<怦然心动>> https://www.haituw.com/movie/201-16475.html的m3u8地址
+[2024-04-13 14:48:18,551] [INFO] main.py:GetM3u8FromMovieLink:73 - 解析电影<<怦然心动>>的m3u8地址成功：None
+[2024-04-13 14:48:18,551] [INFO] main.py:AutoDownloadMovieFromMovieLink:127 - 解析电影失败
+[2024-04-13 15:23:26,085] [INFO] searchMovie.py:SessionInit:44 - 电影解析器初始化成功...
+[2024-04-13 15:23:26,085] [INFO] main.py:GetM3u8FromMovieLink:92 - 开始解析<<怦然心动>> https://www.haituw.com/movie/201-16475.html的m3u8地址
+[2024-04-13 15:23:28,487] [INFO] main.py:GetM3u8FromMovieLink:94 - 解析电影<<怦然心动>>的m3u8地址成功：https://vip.lzcdn2.com/20220322/236_2a3a92e1/1200k/hls/mixed.m3u8
+[2024-04-13 15:23:28,487] [INFO] main.py:DownloadMovieFromM3u8:162 - 开始下载m3U8文件:https://vip.lzcdn2.com/20220322/236_2a3a92e1/1200k/hls/mixed.m3u8
+[2024-04-13 15:23:30,022] [INFO] main.py:DownloadMovieFromM3u8:167 - m3u8 文件下载成功!
+[2024-04-13 15:23:30,022] [INFO] main.py:DownloadMovieFromM3u8:169 - 解析m3u8的base_url
+[2024-04-13 15:23:30,022] [INFO] main.py:DownloadMovieFromM3u8:171 - 解析m3u8的base_urlhttps://vip.lzcdn2.com/20220322/236_2a3a92e1/1200k/hls/
+[2024-04-13 15:23:30,022] [INFO] main.py:DownloadMovieFromM3u8:173 - m3u8文件解析ts url
+[2024-04-13 15:23:30,046] [INFO] main.py:DownloadMovieFromM3u8:175 - 解析m3u8中含有1359个ts
+[2024-04-13 15:23:30,047] [INFO] download.py:ThreadDownload:101 - 初始化多线程下载...
+[2024-04-13 15:23:30,055] [INFO] download.py:ThreadDownload:107 - 启动16个线程开始下载...
+[2024-04-13 15:33:20,256] [INFO] download.py:ThreadDownload:114 - 多线程下载完成
+[2024-04-13 15:33:20,264] [INFO] main.py:DownloadMovieFromM3u8:184 - 检测是否有失败列表
+[2024-04-13 15:33:20,265] [INFO] main.py:DownloadMovieFromM3u8:187 - 全部下载完成,不存在失败列表
+[2024-04-13 15:33:20,265] [INFO] main.py:DownloadMovieFromM3u8:204 - ts文件准备完成!
+[2024-04-13 15:33:20,266] [INFO] main.py:DownloadMovieFromM3u8:206 - 启动ffmpeg 合并ts文件
+[2024-04-13 15:33:20,346] [INFO] mergMp4.py:merge_ts_namelist_to_mp4:32 - 开始生成ffmpeg读取文件列表
+[2024-04-13 15:33:20,363] [INFO] mergMp4.py:merge_ts_namelist_to_mp4:37 - 生成C:\project\m3u8_download\download\怦然心动\nameList.txt文件列表成功
+[2024-04-13 15:33:45,020] [INFO] main.py:DownloadMovieFromM3u8:217 - 生成怦然心动 成功
+[2024-04-13 15:35:39,893] [INFO] main.py:GetM3u8FromMovieName:101 - 开始搜索<<大话西游>>电影信息
+[2024-04-13 15:35:40,128] [INFO] searchMovie.py:SessionInit:44 - 电影解析器初始化成功...
+[2024-04-13 15:35:44,603] [INFO] main.py:GetM3u8FromMovieName:105 - 电影搜索成功，信息数据如下：
+[2024-04-13 15:37:28,290] [INFO] main.py:GetM3u8FromMovieName:101 - 开始搜索<<大话西游>>电影信息
+[2024-04-13 15:37:28,492] [INFO] searchMovie.py:SessionInit:44 - 电影解析器初始化成功...
+[2024-04-13 15:37:32,939] [INFO] main.py:GetM3u8FromMovieName:105 - 电影搜索成功，信息数据如下：
+[2024-04-13 15:37:32,939] [INFO] main.py:GetM3u8FromMovieLink:92 - 开始解析<<大话西游>> /movie/201-208757.html的m3u8地址
+[2024-04-13 15:37:35,379] [INFO] main.py:GetM3u8FromMovieLink:94 - 解析电影<<大话西游>>的m3u8地址成功：https://vip.ffzy-play7.com/20221112/3799_ea828817/2000k/hls/mixed.m3u8
+[2024-04-13 15:37:35,379] [INFO] main.py:DownloadMovieFromM3u8:162 - 开始下载m3U8文件:https://vip.ffzy-play7.com/20221112/3799_ea828817/2000k/hls/mixed.m3u8
+[2024-04-13 15:37:37,008] [INFO] main.py:DownloadMovieFromM3u8:167 - m3u8 文件下载成功!
+[2024-04-13 15:37:37,008] [INFO] main.py:DownloadMovieFromM3u8:169 - 解析m3u8的base_url
+[2024-04-13 15:37:37,008] [INFO] main.py:DownloadMovieFromM3u8:171 - 解析m3u8的base_urlhttps://vip.ffzy-play7.com/20221112/3799_ea828817/2000k/hls/
+[2024-04-13 15:37:37,008] [INFO] main.py:DownloadMovieFromM3u8:173 - m3u8文件解析ts url
+[2024-04-13 15:37:37,042] [INFO] main.py:DownloadMovieFromM3u8:175 - 解析m3u8中含有1509个ts
+[2024-04-13 15:37:37,042] [INFO] download.py:ThreadDownload:101 - 初始化多线程下载...
+[2024-04-13 15:37:37,047] [INFO] download.py:ThreadDownload:107 - 启动16个线程开始下载...

@@ -1,3 +1,4 @@
 *.pyc
 *.ts
 *.mp4
+logs/app.log

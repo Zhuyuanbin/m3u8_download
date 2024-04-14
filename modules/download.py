@@ -38,6 +38,7 @@ class Downloader:
         self.total_count += 1
 
     def download_file(self, url):
+        thread_name = threading.current_thread().name
         retry_count = 0
         while retry_count < self.max_retry:
             try:
@@ -49,15 +50,15 @@ class Downloader:
                         self.completed_count += 1
 
                         
-                    print(f"Downloaded {url} ({self.completed_count}/{self.total_count})")
+                    print(f"{thread_name} Downloaded {url} ({self.completed_count}/{self.total_count})")
                     return
                 else:
-                    logPrint(f"Failed to download {url}. Status code: {response.status_code}")
+                    logPrint(f"{thread_name} Failed to download {url}. Status code: {response.status_code}")
             except Exception as e:
-                logPrint(f"Exception occurred while downloading {url}: {e}")
+                logPrint(f"{thread_name} Exception occurred while downloading {url}: {e}")
             retry_count += 1
         self.failed_urls.append(url)
-        logPrint(f"Failed to download {url} after {self.max_retry} retries")
+        logPrint(f"{thread_name} Failed to download {url} after {self.max_retry} retries")
 
     def download_manager(self):
         while True:
@@ -72,8 +73,8 @@ class Downloader:
         self.status = 1
         self.start_time = time.time()
 
-        for _ in range(num_workers):
-            worker = threading.Thread(target=self.download_manager)
+        for id in range(num_workers):
+            worker = threading.Thread(target=self.download_manager,name=id)
             worker.daemon = True
             worker.start()
 

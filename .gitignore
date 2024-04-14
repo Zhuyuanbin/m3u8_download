@@ -2,3 +2,4 @@
 *.ts
 *.mp4
 logs/app.log
+*.log

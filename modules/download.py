@@ -45,17 +45,18 @@ class Downloader:
                 if response.status_code == 200:
                     filename = os.path.join(self.output_dir, url.split('/')[-1])
                     with open(filename, 'wb') as f:
+                        self.completed_count += 1
                         f.write(response.content)
-                    self.completed_count += 1
+                        
                     print(f"Downloaded {url} ({self.completed_count}/{self.total_count})")
                     return
                 else:
-                    print(f"Failed to download {url}. Status code: {response.status_code}")
+                    logPrint(f"Failed to download {url}. Status code: {response.status_code}")
             except Exception as e:
-                print(f"Exception occurred while downloading {url}: {e}")
+                logPrint(f"Exception occurred while downloading {url}: {e}")
             retry_count += 1
         self.failed_urls.append(url)
-        print(f"Failed to download {url} after {self.max_retry} retries")
+        logPrint(f"Failed to download {url} after {self.max_retry} retries")
 
     def download_manager(self):
         while True:
@@ -63,7 +64,7 @@ class Downloader:
             try:
                 self.download_file(url)
             except:
-                print(f"Failed to download {url}  except")
+                logPrint(f"Failed to download {url}  except")
             self.download_queue.task_done()
 
     def start_downloader(self, num_workers=4):
@@ -89,10 +90,10 @@ class Downloader:
             with open(failed_file, "w") as f:
                 for url in self.failed_urls:
                     f.write(url + "\n")
-            print(f"Failed URLs written to: {failed_file}")
+            logPrint(f"Failed URLs written to: {failed_file}")
         self.status = 0
-        print(f"Completed: {self.completed_count}, Total: {self.total_count}")
-        print(f"Total time taken: {self.end_time - self.start_time} seconds")
+        logPrint(f"Completed: {self.completed_count}, Total: {self.total_count}")
+        logPrint(f"Total time taken: {self.end_time - self.start_time} seconds")
 
 
 

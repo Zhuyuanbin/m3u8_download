@@ -153,11 +153,12 @@ def AutoDownloadMovieFromName(movie_name):
         download_ret = DownloadMovieFromM3u8(m3u8_link,movie_name)
         if download_ret:
             MoveAndDel(movie_name)
+            return True
         else:
             logPrint("电影下载失败")
     else:
         logPrint("解析电影失败")
-
+    return False
 
 def AutoDownloadMovieFromMovieLink(movie_link,movie_name):
     m3u8_link = GetM3u8FromMovieLink(movie_name,movie_link)
@@ -165,18 +166,24 @@ def AutoDownloadMovieFromMovieLink(movie_link,movie_name):
         download_ret = DownloadMovieFromM3u8(m3u8_link,movie_name)
         if download_ret:
             MoveAndDel(movie_name)
+            return True
+
         else:
             logPrint("电影下载失败")
     else:
         logPrint("解析电影失败")
+    return False
 
 
 def AutoDownloadMovieFromM3u8Link(m3u8_link,movie_name):
     download_ret = DownloadMovieFromM3u8(m3u8_link,movie_name)
     if download_ret:
         MoveAndDel(movie_name)
+        return True
+
     else:
         logPrint("电影下载失败")    
+    return False
 
 
 

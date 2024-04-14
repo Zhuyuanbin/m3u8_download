@@ -41,12 +41,13 @@ class Downloader:
         retry_count = 0
         while retry_count < self.max_retry:
             try:
-                response = requests.get(url)
+                response = requests.get(url,timeout=180)
                 if response.status_code == 200:
                     filename = os.path.join(self.output_dir, url.split('/')[-1])
                     with open(filename, 'wb') as f:
-                        self.completed_count += 1
                         f.write(response.content)
+                        self.completed_count += 1
+
                         
                     print(f"Downloaded {url} ({self.completed_count}/{self.total_count})")
                     return

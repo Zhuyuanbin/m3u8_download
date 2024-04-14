@@ -8,6 +8,8 @@ from modules.download import Downloader,ThreadDownload
 from modules.logger import logPrint,cclog
 from modules.mergMp4 import merge_ts_namelist_to_mp4,merge_ts_to_mp4
 from modules.downloadM3u8 import download_m3u8,parse_ts_urls
+from modules.filter import find_potential_ad_links
+
 import time
 import argparse
 import shutil
@@ -125,6 +127,25 @@ def GetM3u8FromMovieName(movie_name):
 
 
 
+def FilterADUrls(ts_url_list):
+    filted_list = ts_url_list
+    ad_links = find_potential_ad_links(filted_list)
+    logPrint(f"查找到{len(ad_links)}个疑似广告链接：{ad_links}")
+
+    remove_count = 0
+    for ad in ad_links:
+        if ad in filted_list:
+            filted_list.remove(ad)
+            logPrint(f"移除广告链接{ad}成功")
+            remove_count +=1
+
+
+    logPrint(f"成功过滤{remove_count}个广告链接")
+    return filted_list
+
+
+
+
 def AutoDownloadMovieFromName(movie_name):
 
     m3u8_link = GetM3u8FromMovieName(movie_name)
@@ -174,7 +195,14 @@ def DownloadMovieFromM3u8(m3u8_link,movie_name):
 
     logPrint("m3u8文件解析ts url")
     ts_urls = parse_ts_urls(m3u8_content, m3u8_base_url)
-    logPrint(f"解析m3u8中含有{len(ts_urls)}个ts")
+
+    len_ts_urls = len(ts_urls)
+    logPrint(f"解析原m3u8中含有{len(ts_urls)}个ts")
+
+    # 添加过滤广告文件
+    logPrint(f"开启广告文件过滤")
+    ts_urls = FilterADUrls(ts_urls)
+    logPrint(f"过滤广告链接完成")
 
 
     ts_dir = os.path.join(config.DOWNLOAD_MOVIE_BASE_DIR,movie_name)

@@ -21,6 +21,7 @@ LOG_PATH = os.path.join(BASE_DIR, 'logs')
 
 # 程序日志文件路径
 APP_LOG_FILE = os.path.join(LOG_PATH, 'app.log')
+APP_ERROR_FILE = os.path.join(LOG_PATH, 'error.log')
 
 # 日志级别 DEBUG, INFO, WARNING, ERROR, CRITICAL
 LOG_LEVEL = logging.INFO

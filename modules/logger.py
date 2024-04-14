@@ -58,9 +58,11 @@ def log(log_path, stdout_type):
 
 cclog = log(config.APP_LOG_FILE, 'both')
 logPrint = log(config.APP_LOG_FILE, 'both').info
+logError = log(config.APP_ERROR_FILE, 'both').error
 # log('../test', 'both').info('this test message')
 # log('../test', 'file').info('this test message')
 # log('../test', 'console').info('this test message')
 
 if __name__ == "__main__":
     logPrint("tttt")
+    logError("22222222222")
